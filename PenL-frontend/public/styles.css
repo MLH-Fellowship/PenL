@@ -1,0 +1,116 @@
+/* Login Page Styles*/
+@import url('https://fonts.googleapis.com/css2?family=Glegoo&family=Quicksand&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&family=Marko+One&display=swap');
+
+html,
+body {
+	font-size: 62.5%;
+	font-family: 'Quicksand', sans-serif;
+	letter-spacing: 1px;
+	margin: 0px;
+    padding: 0px;
+	overflow-x: hidden;
+	color: white;
+	background-color: #0a192f;
+	
+}
+.brand{
+	width: 7rem;
+	height: 7rem;
+}
+.playful{
+	font-family: 'Chela One', cursive;
+}
+.text-muted {
+	color: white !important;
+	opacity: 0.6;
+}
+
+h3 {
+	line-height: 1.5;
+  }
+  
+.justify-text{
+	word-spacing: 10rem;
+}
+
+.cta-btn{
+	width: 15rem;
+	height: 4.2rem;
+	letter-spacing: 1px;
+	background-color: #64ffda;
+	color: #0a192f !important;
+	font-weight: bold;
+	font-size: 2rem;
+	text-align: center;
+}
+
+.color-green{
+	color: #64ffda !important;
+}
+.color-purple{
+	color: #e2007c !important;
+}
+.glegoo{
+	font-family: 'Glegoo', serif;
+}
+.heading{
+	font-size: 5.0rem;	
+	letter-spacing: 2px;
+}
+
+.sub-heading{
+	font-size: 4.0rem;	
+	letter-spacing: 2px;
+}
+
+.hero-text-first{
+	margin-top: 20rem;
+}
+
+.hero-text-second{
+	margin-top: 15rem;
+}
+
+small{
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 600px) {
+	.heading{
+		font-size: 3.5rem;	
+		letter-spacing: 3px;
+	}
+
+	.sub-heading{
+		font-size: 2.5rem;	
+		letter-spacing: 2px;
+	}
+
+	h3{
+		font-size: 2.0rem;
+	}
+
+	.txt-center{
+		text-align: center;
+	}
+	.hero-text-first{
+		margin-top: 17rem;
+	}
+
+	.hero-text-second{
+		margin-top: 10rem;
+	}
+}
+
+
+@media only screen and (min-width: 600px) {
+	.img-home{
+		width: 40rem;	
+		height: 40rem;
+	}
+}
+
+
