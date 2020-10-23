@@ -10,7 +10,7 @@
 
     <div class="ml-auto">
       <router-link :to="{ name: 'home' }" class="navbar-brand">
-        PENL
+        PNL
       </router-link>
     </div>
     

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <NavbarComponent />
+    <NavbarComponent v-if="show_nav"/>
     <router-view />
-    <Footer />
+    <Footer v-if="show_footer"/>
   </div>
 </template>
 
@@ -15,7 +15,30 @@ export default {
   components: {
     NavbarComponent,
     Footer
-  }
+  },
+
+  data() {
+      return{
+          show_footer: true,
+          show_nav: true
+      }
+  },
+
+  watch: {
+    $route: function(value) {
+      if (value.meta.hideFooter) {
+        this.show_footer = false;
+      } else {
+        this.show_footer = true;
+      }
+
+      if (value.meta.hideNav) {
+        this.show_nav = false;
+      } else {
+        this.show_nav = true;
+      }
+    }
+  },
 };
 </script>
 

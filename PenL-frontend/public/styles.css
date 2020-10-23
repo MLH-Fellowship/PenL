@@ -12,7 +12,8 @@ body {
     padding: 0px;
 	overflow-x: hidden;
 	color: white;
-	background-color: #0a192f;
+    background-color: #0a192f;
+    height: 100%;
 	
 }
 .brand{
@@ -22,11 +23,17 @@ body {
 .playful{
 	font-family: 'Chela One', cursive;
 }
+
 .text-muted {
 	color: white !important;
 	opacity: 0.6;
 }
-
+.light-green-bg{
+    background-color: #172a45;  
+}
+.dark-green-bg{
+    background-color: #0a192f; 
+}
 h3 {
 	line-height: 1.5;
   }
@@ -35,9 +42,16 @@ h3 {
 	word-spacing: 10rem;
 }
 
+
+input[type="text"] 
+{
+	font-size: 1.6rem;
+}
+
+
 .cta-btn{
-	width: 15rem;
-	height: 4.2rem;
+	width: 18rem;
+	height: 4.4rem;
 	letter-spacing: 1px;
 	background-color: #64ffda;
 	color: #0a192f !important;
@@ -47,7 +61,7 @@ h3 {
 }
 
 .color-green{
-	color: #64ffda !important;
+    color: #64ffda !important;
 }
 .color-purple{
 	color: #e2007c !important;

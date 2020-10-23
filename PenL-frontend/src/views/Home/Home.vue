@@ -20,13 +20,11 @@
           All you have to do is create a room, invite your friends, 
           and you know how this goes...
         </h3>
-        <a
-          role="button"
-          class="btn btn-lg mt-5 px-4 py-2 cta-btn"
-        >
-          Start Game
-        </a
-        >
+        <router-link :to="{ name: 'join' }">
+            <button class="btn btn-lg mt-5 px-4 py-2 cta-btn">
+                Create Room
+            </button>
+        </router-link>
       </div>
     </div>
 
