@@ -67,7 +67,7 @@ export default {
           window.sessionStorage.setItem("username", data.data.username);
           window.sessionStorage.setItem("user_id", data.data.id);
 
-          if (this.$route.query) {
+          if (Object.keys(this.$route.query).length > 0) {
             var room_slug = this.$route.query.room_slug;
             var join_room_endpoint = `api/v1/room/${room_slug}/join`;
 
