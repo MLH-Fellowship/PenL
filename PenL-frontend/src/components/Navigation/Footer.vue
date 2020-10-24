@@ -2,7 +2,13 @@
   <div class="my-footer text-center">
     <div class="row py-3">
       <div class="col-12">
-        <p>Designed and Implemented with<i class="fa fa-heart" aria-hidden="true"></i> by team PenL</p>
+        <p>
+          Designed and Implemented with<i
+            class="fa fa-heart"
+            aria-hidden="true"
+          ></i>
+          by team PenL
+        </p>
       </div>
     </div>
   </div>
@@ -28,7 +34,7 @@ export default {
 ul li {
   margin: 0rem 1.5rem;
 }
-.fa-heart{
+.fa-heart {
   color: #64ffda;
 }
 </style>

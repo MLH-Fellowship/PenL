@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <NavbarComponent v-if="show_nav"/>
+    <NavbarComponent v-if="show_nav" />
     <router-view />
-    <Footer v-if="show_footer"/>
+    <Footer v-if="show_footer" />
   </div>
 </template>
 
@@ -18,10 +18,10 @@ export default {
   },
 
   data() {
-      return{
-          show_footer: true,
-          show_nav: true
-      }
+    return {
+      show_footer: true,
+      show_nav: true
+    };
   },
 
   watch: {
@@ -38,7 +38,7 @@ export default {
         this.show_nav = true;
       }
     }
-  },
+  }
 };
 </script>
 

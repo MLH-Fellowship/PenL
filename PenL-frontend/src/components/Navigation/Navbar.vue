@@ -5,7 +5,6 @@
   >
     <router-link :to="{ name: 'home' }" class="navbar-brand">
       <img src="@/assets/brand/logo-new.png" class="brand" alt="logo" />
-      
     </router-link>
 
     <div class="ml-auto">
@@ -13,7 +12,6 @@
         PNL
       </router-link>
     </div>
-    
   </nav>
 </template>
 
@@ -40,7 +38,7 @@ export default {
 .navbar-brand {
   font-size: 2.5rem;
   color: #64ffda;
-  font-family: 'Marko One', serif;
+  font-family: "Marko One", serif;
   letter-spacing: 3px;
 }
 </style>
