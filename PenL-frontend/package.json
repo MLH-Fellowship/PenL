@@ -11,8 +11,10 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^2.6.5",
+    "socket.io-client": "^2.3.1",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3"
+    "vue-router": "^3.0.3",
+    "vue-socket.io": "^3.0.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
