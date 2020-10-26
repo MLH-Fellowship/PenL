@@ -4,13 +4,24 @@
       class="row  h-100 px-5  justify-content-center align-items-center mt-5"
     >
       <div class="col-12 col-md-8 text-center mb-5 mb-md-0 px-md-5 px-3 py-5">
-        <h3 class="mt-5 text-muted text-justify">
-          PenL allows you to learn core programming concepts along with friends
-          in a fun way. All you have to do is create a room, invite your
-          friends, and you know how this goes...
+        <h3
+          class="mt-5 text-muted text-justify text-center animate color-green"
+          v-if="!startGame"
+        >
+          Waiting for Other Players to Join 
         </h3>
 
-        <button class="btn btn-lg mt-5 px-4 py-2 cta-btn">
+        <h3
+          class="mt-5 text-muted text-justify text-center  color-green"
+          id="welcome"
+        >
+          
+        </h3>
+
+        <button
+          class="btn btn-lg mt-5 px-4 py-2 cta-btn"
+          v-if="showStartGameButton"
+        >
           Start Game
         </button>
       </div>
@@ -19,12 +30,12 @@
         <div class="card shadow my-5 px-2 light-green-bg">
           <div class="card-body text-center">
             <h1 class="sub-heading mt-3 card-title playful">
-              <span class="color-purple ">Leading Now</span> <span>✨</span>
+              <span>Leading Now</span> <span>✨</span>
             </h1>
 
-            <h3 class="card-subtitle color-green">
-              <span class="mr-4 animate">User-X </span>
-              <span class="pts animate">50pts</span>
+            <h3 class="card-subtitle color-purple">
+              <span class="mr-4 ">User-X </span>
+              <span class="pts">50pts</span>
             </h3>
           </div>
         </div>
@@ -32,9 +43,7 @@
         <div class="card shadow my-5 px-2 light-green-bg">
           <div class="card-body text-center">
             <h1 class="sub-heading mt-3 card-title playful">
-              <span class="color-purple "
-                >{{ room_details.room_name }} Invite Link</span
-              >
+              <span>{{ room_details.room_name }} Invite Link</span>
             </h1>
             <CloneIcon :copy_text="room_details.invite_link" />
           </div>
@@ -43,17 +52,19 @@
         <div class="card shadow my-5 px-2 light-green-bg">
           <div class="card-body text-center">
             <h1 class="sub-heading mt-3 card-title">
-              <span class="color-purple playful mr-2">Players in Room:</span
-              ><span class="color-green">{{ room_details.players_count }}</span>
+              <i class="fa fa-users  mr-1" aria-hidden="true"></i>
+              <span class=" playful mr-2">Players </span
+              ><span class="">{{ players.length }}</span>
             </h1>
 
             <small
-              class="card-subtitle  text-muted mr-5"
-              v-for="player in room_details.players"
+              class="card-subtitle text-muted"
+              v-for="player in players"
               :key="player.id"
             >
-              <span class="mr-1">{{ player.username }}:</span>
-              <span class="pts">{{ player.points }} pts</span>
+              <i class="fa fa-user m-2" aria-hidden="true">
+                <span class="m-1"> {{ player.username }}</span>
+              </i>
             </small>
           </div>
         </div>
@@ -76,13 +87,23 @@ export default {
     }
   },
 
+  sockets: {
+    connect: function() {
+      console.log("socket connected to server");
+    }
+  },
+
   components: {
     CloneIcon
   },
 
   data() {
     return {
-      room_details: null
+      room_details: null,
+      players: [],
+      startGame: false,
+      showStartGameButton: false,
+      user: window.sessionStorage.getItem("username")
     };
   },
 
@@ -92,7 +113,18 @@ export default {
 
       apiService(get_room_endpoint, "GET").then(data => {
         this.room_details = data;
+        this.players = [...this.room_details.players];
       });
+    },
+
+    welcomeUser(username) {
+        target = document.getElementById('welcome');
+        target.innerHTML = `${ username } just joined the room`
+    },
+
+    deleteWelcomeText() {
+        target = document.getElementById('welcome');
+        target.innerHTML = ''
     }
   },
 
@@ -102,6 +134,20 @@ export default {
 
   created: function() {
     this.getRoom();
+
+    this.sockets.subscribe("new_room_user", data => {
+      this.startGame = true;
+
+      if(this.startGame && this.user === this.room_details.host){
+          this.showStartGameButton = true
+      }
+      
+      this.players = [...this.room_details.players];
+      this.players.push(data);
+
+      this.welcomeUser(data.username)
+      
+    });
   }
 };
 </script>
@@ -114,14 +160,15 @@ export default {
   animation-name: animate-animation;
   animation-duration: 2.5s;
   animation-iteration-count: infinite;
+  font-weight: bold;
 }
 
 @keyframes animate-animation {
   from {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   to {
-    font-size: 1.7rem;
+    font-size: 3rem;
   }
 }
 </style>

@@ -12,7 +12,7 @@
         :title="tooltip"
       >
       </i>
-      <p class="mt-4">
+      <p class="mt-4 text-muted">
         Copy the link above and share with friends to invite them
       </p>
     </small>
