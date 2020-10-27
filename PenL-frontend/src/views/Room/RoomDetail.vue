@@ -8,15 +8,13 @@
           class="mt-5 text-muted text-justify text-center animate color-green"
           v-if="!startGame"
         >
-          Waiting for Other Players to Join 
+          Waiting for Other Players to Join
         </h3>
 
         <h3
           class="mt-5 text-muted text-justify text-center  color-green"
           id="welcome"
-        >
-          
-        </h3>
+        ></h3>
 
         <button
           class="btn btn-lg mt-5 px-4 py-2 cta-btn"
@@ -118,13 +116,13 @@ export default {
     },
 
     welcomeUser(username) {
-        target = document.getElementById('welcome');
-        target.innerHTML = `${ username } just joined the room`
+      let target = document.getElementById("welcome");
+      target.innerHTML = `${username} just joined the room`;
     },
 
     deleteWelcomeText() {
-        target = document.getElementById('welcome');
-        target.innerHTML = ''
+      let target = document.getElementById("welcome");
+      target.innerHTML = "";
     }
   },
 
@@ -138,15 +136,14 @@ export default {
     this.sockets.subscribe("new_room_user", data => {
       this.startGame = true;
 
-      if(this.startGame && this.user === this.room_details.host){
-          this.showStartGameButton = true
+      if (this.startGame && this.user === this.room_details.host) {
+        this.showStartGameButton = true;
       }
-      
+
       this.players = [...this.room_details.players];
       this.players.push(data);
 
-      this.welcomeUser(data.username)
-      
+      this.welcomeUser(data.username);
     });
   }
 };

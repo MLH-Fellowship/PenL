@@ -1,9 +1,9 @@
 import { CSRF_TOKEN } from "./csrf_token.js";
 import axios from "axios";
 
-// http://localhost:8000
+// https://penl-backend.herokuapp.com
 
-const API_URL = "https://penl-backend.herokuapp.com";
+const API_URL = "http://localhost:8000";
 
 function apiService(endpoint, method, data) {
   endpoint = `${API_URL}/${endpoint}`;

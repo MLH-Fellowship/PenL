@@ -1,7 +1,6 @@
 <template>
   <div>
     <small>
-      <!-- <span class="mr-2 text-muted" id="copy-text">{{ copy_text }} </span>  -->
       <input type="text" :value="copy_text" id="copy-text" />
       <i
         class="btn fa fa-clone"

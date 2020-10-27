@@ -19,7 +19,6 @@ export default {
 
   sockets: {
     connect: function() {
-      console.log("socket connected to server");
       this.$socket.emit("users");
     }
   },
