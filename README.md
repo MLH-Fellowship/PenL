@@ -13,7 +13,7 @@ pip install -r requirements.txt
 To run frontend:
 ```bash
 npm i
-npm start
+npm run serve
 ```
 ## Technologies
 This project is created using:
