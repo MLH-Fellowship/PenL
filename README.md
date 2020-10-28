@@ -30,3 +30,6 @@ Click on "**Create Room**" and enter a username: <br />
 
 ---
 After clicking "**Submit**", the game room will be created:
+
+
+## License
