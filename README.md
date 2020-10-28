@@ -20,6 +20,9 @@ This project is created using:
 * [Vue.js](https://vuejs.org/)
 * [Django](https://www.djangoproject.com/)
 
+## Website
+PenL website [here](https://pnl-ng.netlify.app/)
+
 ## Usage
 Go to the home page: <br />
 <img src="https://cdn.discordapp.com/attachments/391873863107215365/770918603553636362/unknown.png" width="600" height="300" />
@@ -31,5 +34,8 @@ Click on "**Create Room**" and enter a username: <br />
 ---
 After clicking "**Submit**", the game room will be created:
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
+[MIT](https://choosealicense.com/licenses/mit/)
