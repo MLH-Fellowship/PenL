@@ -3,7 +3,7 @@ import axios from "axios";
 
 // https://penl-backend.herokuapp.com
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://penl-backend.herokuapp.com";
 
 function apiService(endpoint, method, data) {
   endpoint = `${API_URL}/${endpoint}`;
