@@ -42,8 +42,9 @@ h3 {
 	word-spacing: 10rem;
 }
 
-
-input[type="text"] 
+label,
+input[type="text"],
+input[type="radio"]
 {
 	font-size: 1.6rem;
 }
@@ -55,6 +56,17 @@ input[type="text"]
 	letter-spacing: 1px;
 	background-color: #64ffda;
 	color: #0a192f !important;
+	font-weight: bold;
+	font-size: 2rem;
+	text-align: center;
+}
+
+.cta-btn-purple{
+    width: 18rem;
+	height: 4.4rem;
+	letter-spacing: 1px;
+	background-color: #e2007c;
+	color: white !important;
 	font-weight: bold;
 	font-size: 2rem;
 	text-align: center;

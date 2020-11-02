@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="row  h-100 px-5  justify-content-center align-items-center mt-5"
-    >
+    <div class="row  px-5  justify-content-center align-items-center mt-5">
       <div class="col-12 col-md-8 text-center mb-5 mb-md-0 px-md-5 px-3 py-5">
         <h3
           class="mt-5 text-muted text-justify text-center animate color-green"
@@ -12,13 +10,32 @@
         </h3>
 
         <h3
-          class="mt-5 text-muted text-justify text-center  color-green"
-          id="welcome"
-        ></h3>
+          class="mt-5 mb-5 text-muted text-justify timer text-center color-green"
+          v-if="playGame && timer > 0"
+        >
+          Time Left: {{ timer }} secs
+        </h3>
+
+        <GameOver
+          v-if="!playGame && gameOver"
+          :room_slug="room_slug"
+          :user="user"
+          :host="room_details.host"
+          v-on:restart="getQuestions"
+        />
+
+        <GamePlay
+          v-if="playGame && !gameOver"
+          :players="players"
+          :question="questions[currentQuestionIndex]"
+          :questionNumer="currentQuestionIndex + 1"
+          :timer="timer"
+        />
 
         <button
           class="btn btn-lg mt-5 px-4 py-2 cta-btn"
           v-if="showStartGameButton"
+          v-on:click="getQuestions"
         >
           Start Game
         </button>
@@ -74,6 +91,8 @@
 <script>
 import { apiService } from "@/common/api.service.js";
 import CloneIcon from "@/components/Utils/CloneIcon.vue";
+import GamePlay from "@/components/Utils/GamePlay.vue";
+import GameOver from "@/components/Utils/GameOver.vue";
 
 export default {
   name: "RoomDetail",
@@ -92,16 +111,23 @@ export default {
   },
 
   components: {
-    CloneIcon
+    CloneIcon,
+    GamePlay,
+    GameOver
   },
 
   data() {
     return {
       room_details: null,
       players: [],
+      questions: [],
       startGame: false,
       showStartGameButton: false,
-      user: window.sessionStorage.getItem("username")
+      playGame: false,
+      user: window.sessionStorage.getItem("username"),
+      currentQuestionIndex: 0,
+      timer: 5,
+      gameOver: false
     };
   },
 
@@ -115,14 +141,36 @@ export default {
       });
     },
 
-    welcomeUser(username) {
-      let target = document.getElementById("welcome");
-      target.innerHTML = `${username} just joined the room`;
+    decrementTimer() {
+      this.timer -= 1;
+
+      if (this.timer <= -5) {
+        let index = this.currentQuestionIndex + 1;
+        if (index >= this.questions.length) {
+          this.gameOver = true;
+          this.playGame = false;
+        } else {
+          this.currentQuestionIndex += 1;
+          this.timer = 5;
+        }
+      }
     },
 
-    deleteWelcomeText() {
-      let target = document.getElementById("welcome");
-      target.innerHTML = "";
+    startTimer() {
+      setInterval(this.decrementTimer, 1000);
+    },
+
+    getQuestions() {
+      let get_questions_endpoint = `api/v1/questions`;
+
+      apiService(get_questions_endpoint, "GET").then(data => {
+        this.questions = [...data];
+        this.showStartGameButton = false;
+        this.playGame = true;
+        this.startGame = true;
+        this.gameOver = false;
+        this.startTimer();
+      });
     }
   },
 
@@ -142,8 +190,7 @@ export default {
 
       this.players = [...this.room_details.players];
       this.players.push(data);
-
-      this.welcomeUser(data.username);
+      this.players = [...new Set(this.players)];
     });
   }
 };
@@ -152,6 +199,10 @@ export default {
 <style scoped>
 .players {
   font-size: 1.2rem;
+}
+
+.timer {
+  font-size: 3rem;
 }
 .animate {
   animation-name: animate-animation;
